@@ -1,0 +1,26 @@
+{% for ingredient in ingredietns %}
+<tr>
+    <th scope="row">{{ingredient.id}}</th>
+    <td>{{ingredient.ingredient_name}}</td>
+    <td>{{ingredient.unit_amount}}</td>
+    <td>{{ingredient.unit_name}}</td>
+    <td>1 EURO</td>
+    <!-- Delete  -->
+    <td>
+        <form action="{%  url 'recipe:ingredient-update' ingredient.id%}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="album_id" value="{{ ingredient.id }}"/>
+            <button type="submit" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+        </form> / 
+        <form action="{%  url 'recipe:ingredient-delete' ingredient.id%}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="album_id" value="{{ ingredient.id }}"/>
+            <button type="submit" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </form>
+    </td>
+</tr>
+{% endfor %}

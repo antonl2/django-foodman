@@ -1,0 +1,56 @@
+{% extends 'recipe/base.html' %}
+
+{% block body %}
+    {% for raw_recipe in raw_recipes %}
+        <div class="caption">
+            <h2 class="title-recipe">{{ raw_recipe.recipe_name }}</h2>
+            <a href = "{% url 'recipe:detail' raw_recipe.id %}" class="btn btn-primary btn-sm btn-detailrec">View Details</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in all_recipes %}
+                        {% if raw_recipe.id == recipe.recipe_id %}
+                        <tr>
+                            <td>{{recipe.ingredient}}</td>
+                            <td>{{recipe.amount}}</td>
+                            <td>{{recipe.unit}}</td>
+                            <td>
+                                <form action="{%  url 'recipe:recipe-update' recipe.id%}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="album_id" value="{{ ingredient.id }}"/>
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                </form> / 
+                                <form action="{%  url 'recipe:recipe-delete' recipe.id%}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="album_id" value="{{ ingredient.id }}"/>
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+
+    <script>
+        $(document).ready(function() {
+            $("#btn_additem").attr("href", "{% url 'recipe:recipe-add' %}")
+            $("#title_btnadd").html("Add Recipe");
+            
+        });      
+    </script>
+{% endblock %}
+

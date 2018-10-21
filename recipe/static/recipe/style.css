@@ -1,0 +1,19 @@
+body{
+    background: #f9fafc;
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand{
+    font-family: 'Satisfy', cursive;
+}
+
+.title-recipe, .btn-detailrec {
+    float: left; 
+}
+
+.btn-detailrec {
+    margin: 22px 0 10px 10px;
+}

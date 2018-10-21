@@ -1,0 +1,38 @@
+{% extends 'recipe/base.html' %}
+{% block title %}Recipe Details{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+    <div class="row">
+        <h2>{{ all_recipes.recipe_name }}</h2>
+        
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Unit</th>
+                <th>Cost(EUR)</th>
+            </thead>
+            <tbody>
+                {% for ingredient in ingredients %}
+                    <tr>
+                        <td>{{ingredient.ingredient_name}}</td>
+                        <td>{{ingredient.amount}}</td>
+                        <td>{{ingredient.unit_name}}</td>
+                        <td>{{ingredient.cost}}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><b>Total cost</b></td>
+                    <td><b>{{total}}</b></td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+
+{% endblock %}
+
+

@@ -1,0 +1,13 @@
+{% for i in order %}
+  <tr>
+    {% if i.order_booked %}
+    <tr class="success">
+    {% else %}
+    <tr>                    
+    {% endif %}
+
+     <td>{{ i.regnr|upper }}</td>
+     <td>{{ i.brand|capfirst }}</td>
+     <td>{{ i.brand_model|capfirst }}</td>
+  </tr>
+{% endfor %}
